@@ -1,0 +1,23 @@
+version: '3'
+services:
+  app:
+    image: discord_bot:1.0
+    environment:
+      - DB_HOST=mariadb
+      - DB_PORT=3306
+      - DB_USER=root
+      - DB_PASS=<YOUR_PASSWORD_HERE>
+      - DB_DATABASE=signups
+      - DISCORD_TOKEN=<YOUR_TOKEN_HERE>
+    depends_on:
+      - mariadb
+  mariadb:
+    image: discord_bot_mariadb:1.0
+    container_name: mariadb
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - MYSQL_ROOT_PASSWORD=<YOUR_PASSWORD_HERE>
+      - TZ=Europe/Prague
+    volumes:
+      - </your/path/here>:/var/lib/mysql
